@@ -1,0 +1,25 @@
+
+
+.container {
+    background-color: gray;
+    margin: 10px;
+    width: 60vw;
+    height: 60vh;
+    display: flex;
+    /* flex-direction: row; 
+    flex-wrap: wrap;*/
+    flex-flow: row wrap;
+    /* justify-content: space-around; */
+    align-items: stretch;
+}
+.item   {
+    width: 15vw;
+    height: 30vh;
+    background-color: rgb(79, 192, 230);
+    border: 1px solid #000;
+}
+
+.item2 
+{
+    font-size: 30px;
+}

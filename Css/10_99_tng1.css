@@ -1,0 +1,39 @@
+ul {
+    box-sizing: border-box;
+  }
+  .menu {
+    margin:50px auto;
+    padding:0;
+    list-style:none;
+    width:605px;
+    height:40px;
+    box-shadow:0px 5px 10px 5px  #3f3e3e;
+    background-color:#dadada;
+  }
+  .menu li {
+    float:left;
+    border-right:1px solid #2df106;
+  }
+  .menu li a:link{
+    color:black;
+    text-decoration:none;
+    text-align:center;
+    display:block;
+    width:100px;
+    height:40px;
+    line-height: 40px;
+  }
+  .menu li a:visited {
+    color:black;
+  }    
+  .menu li:last-child {
+    border-right:none;      
+  }
+  .menu li:not(:last-child) a:hover {
+    background-color:#555;
+    color:#fff;
+  }
+  .menu li:last-child a:hover {
+    background-color:#b30000;
+    color:#fff;
+  }
