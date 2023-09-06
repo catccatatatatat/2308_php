@@ -163,7 +163,7 @@ FROM employees;
 
 -- 여자 사원의 사번, 생일, 풀네임을 오름차순으로 출력해주세요 ex.
 
-SELECT emp_no, birth_date, CONCAT(first_name,' ', last_name) AS FULL_name
+sysSELECT emp_no, birth_date, CONCAT(first_name,' ', last_name) AS FULL_name
 FROM employees
 WHERE gender = 'f'
 GROUP BY Full_name ASC;
@@ -299,7 +299,7 @@ WHERE to_date >= NOW();
 	SELECT *
 	FROM employees
 	WHERE gender = 'M';
-	
+-- 	
 	SELECT emp.*
 	FROM (
 		SELECT *
@@ -309,9 +309,140 @@ WHERE to_date >= NOW();
 
 
 
+-- 1번
+
+SELECT * FROM  titles;
+
+-- 2번
+SELECT DISTINCT emp_no
+FROM salaries
+WHERE salary <= 60000;
+
+-- 3번
+SELECT DISTINCT emp_no
+FROM salaries
+WHERE salary >= 60000
+AND salary <= 70000;
+
+-- 4번
+SELECT *
+FROM employees
+WHERE emp_no IN(10001, 10005);
+
+-- 5번
+SELECT emp_no, title
+FROM titles
+WHERE title = 'engineer' ;
+
+-- 6번
+SELECT first_name, Last_name
+FROM employees
+ORDER BY first_name ASC;
+
+-- 7번
+SELECT emp_no, AVG(salary)
+FROM salaries
+WHERE salary
+GROUP BY emp_no;
+
+-- 8번
+SELECT emp_no, AVG(salary)
+FROM salaries
+GROUP BY emp_no HAVING AVG(salary) <=50000
+AND AVG(salary) >= 30000;
+
+-- 9번
+SELECT emp_no,first_name,last_name,gender
+FROM employees
+WHERE emp_no IN(
+	SELECT emp_no
+	FROM salaries
+	GROUP BY emp_no HAVING AVG (salary)>70000
+	);
+	
+	
+-- 10번
+SELECT emp_no, last_name
+FROM employees
+WHERE emp_no IN (
+	SELECT emp_no 
+	FROM titles
+	WHERE title = 'Senior Engineer' And to_date > 20230904
+	);
+	
+	
+	
+	
+-- 	INSERT
+-- 	INSERT INTO 테이블명 [ ( 속성 1, 속성2 ) ]
+-- 	VALUES ( 속성값1, 속성값2)
+
+-- 500000 신규회원
+INSERT INTO employees (
+	emp_no, 
+	birth_date, 
+	first_name, 
+	last_name,
+	gender, 
+	hire_date
+	)
+VALUES (
+  500000
+	,20200101
+	, 'cat'
+	, 'black'
+	, 'M'
+	, 20230904
+);
 
 
+-- 500000 번 사원의 급여 데이터를 삽입해 주세요
 
+SELECT * FROM employees WHERE emp_no = 500000;
 
+-- 
+INSERT INTO salaries (
+	emp_no, 
+	salary,
+	from_date,
+	to_date
+	)
+VALUES (
+  500000,
+  500000,
+  20010101,
+  99990101
+  );
 
+SELECT MAX(salary) FROM salaries;
+SELECT * FROM salaries WHERE emp_no = 500000;
 
+INSERT INTO dept_emp (
+	emp_no,
+	dept_no,
+	from_date,
+	to_date
+
+)
+VALUES (
+  500000,
+  'd001',
+  20010101,
+  99990101
+);
+SELECT * FROM dept_emp WHERE emp_no = 500000;
+  
+INSERT INTO titles (
+	emp_no
+	,from_date
+	,to_date
+	,title )
+VALUES (
+	500000
+	, 20000101
+	, 99990101
+	, 'Technique Leader' );
+
+SELECT * FROM titles WHERE emp_no = 500000;
+
+COMMIT;
