@@ -5,8 +5,14 @@
 // string : 문자열
 // $str = "sssss";
 
-// array : 배열
-// $arr = [1, 2, 3];
+//array : 배열
+ $arr = ["a", "b", "c", "d", "e"];
+echo $arr[4];
+$item = [
+    "name" => "cat"
+    ,"age" => 13
+];
+echo $item["age"];
 
 // double : 실수
 // $double = 2.343;
