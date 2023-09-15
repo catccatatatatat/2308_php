@@ -2,16 +2,17 @@
 
 $targetNumber = rand(1, 100);
 
+
 $attempts = 0;
+
 
 $maxAttempts = 5;
 
 echo "1부터 100 사이의 숫자를 맞추는 게임을 시작합니다.\n";
 
 while ($attempts < $maxAttempts) {
- 
+
     $userInput = readline("숫자를 입력하세요 (1부터 100 사이): ");
-    
 
     if (!is_numeric($userInput) || $userInput < 1 || $userInput > 100) {
         echo "올바른 숫자를 입력하세요.\n";
@@ -28,6 +29,7 @@ while ($attempts < $maxAttempts) {
         echo "정답! 축하합니다.\n";
         break;
     }
+
 
     $remainingAttempts = $maxAttempts - $attempts;
     echo "남은 기회: {$remainingAttempts}번\n";
