@@ -20,12 +20,14 @@ $arr = [
     ]
 ]; 
 
+
 echo "ID List\n";
 
 foreach ($arr as $item) {
     echo $item["id"]."\n";
 }
 ?>
+
 
 <!-- 
 이 위의 PHP 코드는 배열($arr) 안에 저장된 데이터를 사용하여 "ID List"라는 문자열과 배열 내의 각 요소의 "id" 값을 출력하는 간단한 프로그램입니다.
@@ -63,8 +65,6 @@ echo "ID List\n";
 
 foreach 루프를 통한 배열 순회:
 
-php
-Copy code
 foreach ($arr as $item) {
     echo $item["id"]."\n";
 }
