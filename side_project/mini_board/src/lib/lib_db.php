@@ -75,6 +75,8 @@ function db_select_board_paging(&$conn, &$arr_param){
         ." ,Date_of_issue "
         ." FROM "
         ." board "
+        ." WHERE "
+        ."      delete_flag = '0' "
         ." ORDER BY "
         ." id DESC "
         ." LIMIT :list_cnt OFFSET :offset "
@@ -102,6 +104,8 @@ function db_select_board_cnt( &$conn ){
         ." count(id) as cnt "
         ." FROM "
         ." board "
+        ." WHERE "
+        ."  delete_flag = '0' "
         ;
     try {
         $stmt = $conn->query($sql);
@@ -162,7 +166,9 @@ function db_select_board_id( &$conn, &$param_id) {
     ." FROM "
     ." board "
     ." WHERE "
-    ." id = :id ";
+    ." id = :id "
+    ." AND "
+    ."  delete_flag = '0' ";
     $arr_ps = [
     ":id" => $param_id["id"]];
         try {
@@ -209,5 +215,33 @@ function db_update_board_id(&$conn, &$arr_param){
         return false;
     }
     }  
-
+// -----------------------------
+// 함수명 : dn_delete_boards_id
+// 기능 : 특징 ID의 레코드 삭제처리
+// 파라미터 : PDO       $&conn
+//           Array  &$arr_param
+// 리턴    :boolean
+//------------------------------
+function db_delete_board_id(&$conn, &$arr_param) {
+    $sql =
+    " UPDATE board "
+    ." SET "
+    ." delete_date = now() "
+    ." ,delete_flag = '1' "
+    ." WHERE "
+    ."      id = :id "
+    ;
+    $arr_ps = [
+        ":id" => $arr_param["id"]
+    ];
+    try {
+        // 2. Query 실행
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result;
+    } catch(Exception $e) {
+        echo $e->getMessage();
+        return false;                
+    }  
+}
 ?>

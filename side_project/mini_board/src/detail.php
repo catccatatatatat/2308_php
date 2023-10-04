@@ -55,24 +55,23 @@ $page=$_GET["page"];
 	<?php
 	require_once(ROOT."header.php");
 	?>
-<table>
-	<tr>
-		<th>글 번호</th>
-		<td><?php echo $item["id"]; ?></td>
-	</tr>
-	<tr>
-		<th>제목</th>
-		<td><?php echo $item["title"]; ?></td>
-	</tr>
-	<tr>
-		<th>내용</th>
-		<td><?php echo $item["detail"]; ?></td>
-	</tr>
-	<tr>
-		<th>작성일자</th>
-		<td><?php echo $item["date_of_issue"]; ?></td>
-		
-	</tr>
+ <table>
+        <tr>
+            <th>글 번호</th>
+            <td><?php echo $item["id"]; ?></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><?php echo $item["title"]; ?></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><?php echo $item["detail"]; ?></td>
+        </tr>
+        <tr>
+            <th>작성일자</th>
+            <td><?php echo $item["date_of_issue"]; ?></td>
+        </tr>
 
 </table>
 <a href="/mini_board/src/update.php?id=<?php echo $item["id"]; ?>&page=<?php echo $page ?>">수정</a>

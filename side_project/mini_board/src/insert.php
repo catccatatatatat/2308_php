@@ -82,7 +82,7 @@ if(isset($_GET["id"])) {
             <label for="detail">내용</label>
             <textarea name="detail" id="detail" cols="30" rows="10"></textarea>
             <br>
-            <button type="Date_of_issue">작성</button>
+            <button type="submit">작성</button>
             <a href="/mini_board/src/miniboardlist.php">취소</a>      
             </fieldset>
         </main>
