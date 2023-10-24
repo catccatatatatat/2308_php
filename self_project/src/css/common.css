@@ -1,0 +1,89 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(/mini_board/doc/kuro.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 0 140px ;
+}
+header {
+	width: 100%;
+	height: 50%;
+	background-image: url(/mini_board/doc/kuro2.jpg);
+	background-size: cover;
+	padding: 2rem;
+	background-position: 0% 40%;
+}
+header>h1 {
+	margin: 0;
+	color: #24012596;
+	text-align: center;
+	font-size: 4rem;
+}
+table {
+	border-collapse: collapse;
+	width: 700px;
+	height: 500px;
+	margin: 50px auto;
+	font-size: 1.5rem;
+}
+td {
+	border-bottom: 0.5px solid #62006b80;
+	text-align: center;
+}
+.table-title {
+	background-color: #af7cdb; 
+	border: 1px solid #6d238000; 
+	padding: 20px;
+	text-align: center;
+	border-bottom: 1px solid #62006b;
+}
+section {
+	text-align: center;
+}
+a {
+	text-decoration: none;
+	display: inline-block;
+}
+.page-btn {
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	background-color: #af7cdb; 
+	color: #ffffff;
+	border: 1px solid #ecadfc; 
+	border-radius: 10px; 
+}
+
+.bk-a {
+background-color: #8a4dc0; }
+
+table {
+	border-collapse: collapse;
+	width: 700px;
+	height: 500px;
+	margin: 50px auto;
+	font-size: 1.5rem;}
+
+
+
+th, td {
+	padding: 20px;
+	text-align: center;
+	border-radius: 10px; 
+	background-color: rgba(0, 0, 0, 0.2); 
+}
+
+th {
+	background-color: rgba(0, 0, 0, 0.4); 
+}
+
+a {
+	text-decoration: none;
+	color: #0c0c0c;
+	margin: 0 10px;
+}
