@@ -60,3 +60,27 @@ setTimeout(() => {
 		}, 1000);
 	}, 2000);
 }, 3000);
+
+
+
+//Callback함수는 특정 함수에 매개변수로 전달된 함수를 의미한다. 그 콜백함수는 함수를 전달받은 함수안에서 호출된다
+
+function Callback(callback){
+    console.log('콜백 함수');
+    callback();
+}
+Callback(function(){
+    console.log('콜백 받는곳');
+})
+
+/*Callback함수에서 Callback을 받지 않는다면 함수의 과정이 끝나기도 전에 다음 프로세스를 진행하게 되는 경우가 있다.
+Callback 함수는 가독성이 좋지않다*/
+
+function Callback(callback){
+    function Callback2(callback){
+        function Callback3(callback){
+            console.log('무한콜백');
+        }
+    }
+}
+//이것이 무한콜백이다. 가독성도 떨어지고 실수 위험도 커지게 된다. 그래서 ES7에서는 promise를 ES8에서는 async, await를 지원한다.

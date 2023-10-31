@@ -1,43 +1,124 @@
 /*
-1. HTTP ( Hypertext Transfer Protocol) 란?
-	어떻게 Hypertext를 주고 받을지 규약한 프로토콜로
-	클라이언트가 서버에 데이터를 request(요청)을 하고,
-	서버가 해당 request에 따라 response(응답)을 클라이언트에 보내주는 방식입니다.
-	Hypertext는 웹사이트에서 이용되는 하이퍼 링크나 리소스, 문서, 이미지 등을 모두 포함합니다.
+1. promise 객체
+	- 비동기 프로그래밍의 근간이 되는 기법 중 하나
+	- 프로미스를 사용하면 콜백 함수를 대체하고, 비동기 작업의 흐름을 쉽게 제어가능
+	- Promise 객체는 비동기 작업의 최종 완료 또는 실패를 나타내는 독자적인 객체
+*/
 
-2. AJAX ( Asynchronous JavaScript And XML) 이란?
-	웹페이지에서 비동기 방식으로 서버에게 데이터를 request하고,
-	서버의 response를 받아 동적으로 웹페이지를 갱신하는 프로그래밍 방식입니다.
-	즉, 웹 페이지 전체를 다시 로딩하지 않고도 일부분만을 갱신 할 수 있습니다.
-	대표적으로 XMLHttpRequest 방식과 Fetch Api 방식이 있습니다.
-
-3. JSON ( JavaScript Object Notation ) 이란?
-	JavaSctipt의 Object에 큰 영감을 받아 만들어진 서버 간의 HTTP 통신을 위한 텍스트 데이터 포맷입니다.
-	장점은 다음과 같습니다.
-		- 데이터를 주고 받을 때 쓸 수 있는 가장 간단한 파일 포맷
-		- 가벼운 텍스트를 기반
-		- 가독성이 좋음
-		- Key와 Value가 짝을 이루고 있음
-		- 데이터를 서버와 주고 받을 때 직렬화(Serialization)[*1 참조]하기 위해 사용
-		- 프로그래밍 언어나 플랫폼에 상관없이 사용 가능
-
-	JSON.stringify( obj ) : Object를 JSON 포맷의 String으로 변환(Serializing)해주는 메소드
-	JSON.parse( json ) : JSON 포맷의 String을 Object로 변환(Deserializing)해주는 메소드
-
-// XML
-<xml>
-	<data>
-		<id>56</id>
-		<name>홍길동</name>
-	</data>
-</xml>
-
-// json
-{
-	data: {
-		id: 56
-		,name: '홍길동'
+// 2. promise 사용법
+const PROMISE1 = new Promise( function(resolve, reject) {
+	let flg = true;
+	if(flg) {
+		return resolve('성공'); // 요청 성공 시 resolve()를 호출
+	} else {
+		return reject('실패'); // 요청 실패 시 reject()를 호출
 	}
+});
+
+PROMISE1
+.then( data => console.log(data) )
+.catch( err => console.log(err))
+.finally(() => console.log('finally 입니다.'));
+
+
+// 3. promise 함수 등록
+// 재사용성, 가독성, 확장성을 이유로 현업에서는 아래와 같이 함수를 등록하고 사용
+function PRO2() {
+	return new Promise( function(resolve, reject) {
+		let flg = true;
+		if(flg) {
+			return resolve('성공'); // 요청 성공 시 resolve()를 호출
+		} else {
+			return reject('실패'); // 요청 실패 시 reject()를 호출
+		}
+	});
 }
 
-*/
+function PRO3(str, ms) {
+	return new Promise( function(resolve) {
+		setTimeout(()=>{
+			console.log(str);
+			resolve();
+		}, ms);
+	});
+}
+
+setTimeout(() => {
+	console.log('A');
+	setTimeout( () => {
+		console.log('B');
+		setTimeout(() => {
+			console.log('C')
+		}, 1000);
+	}, 2000);
+}, 3000);
+
+PRO3('A', 3000)
+.then( () => PRO3('B', 2000) )
+.then( () => PRO3('C', 1000) );
+
+
+
+//promise는 기본적으로 Callback이 하는일과 같다. 차이점은 promise는 작업이 끝난 후 실행할 함수를 제공하는 것이 아니라 promise자체 메소드인 .then()을 호출한다.
+
+function add10(a) {
+	return new Promise(resolve => setTimeout(() => resolve(a + 10), 100));
+  } //Promise사용 시 작업이 끝났음을 알려주는 resolve를 인자로 받아들임.
+add10(10)
+	.then(add10)
+	.then(add10)
+	.then(add10)
+	.then((res) => console.log(res))
+
+//Promise는 .then()과 같은 메소드를 연속적으로 사용이 가능한 이점을 가지고 있다. 따라서 callback을 사용했을 때와는 다르게 코드를 작성하고 이해하기가 한결 쉬워졌다.
+
+
+// Promise에서의 예외 처리
+
+add10(10)
+.then((res) => {
+        throw 'test error';
+    })
+.catch((err) => console.log(err));
+/*promise에서는 작업이 실패했을
+경우 자동으로 .catch()메소드를 호출되게 한다.
+기존 try-catch를 이용해서도 예외처리가 가능하지만 자바스크립트에서는 promise의 catch를 사용하라는 warning message를 출력함.*/
+
+
+//Async/Await
+
+//Node.js 7.6버전부터 구현된 기능이며 Async/Await를 사용하면 promise에 비해 보다 쉽게 비동기적인 상황을 표현할 수 있다.
+
+async function f1() {
+	const a = await add10(10);
+	const b = await add10(a);
+	console.log(a, b)
+}
+f1();
+
+//Async와 Await을 사용하려면 우선 사용할 함수 앞에 async라는 키워드를 붙여 사용해야 하며 선언된 async 함수 안에서만 await 키워드를 사용할 수 있다.
+
+//await은 함수의 작업이 끝나고 결과값을 반환할 때까지 대기하게 되며 결과 값이 리턴된다면 다음 작업으로 넘어가게 됩니다.
+
+// Async/Await의 예외 처리
+
+async function f2() {
+	const a = await add10(10).then(res => res);
+	const b = await add10(a).catch(err => err);
+	console.log(a, b)
+}
+f2();
+//위의 코드에선 add10()이 promise를 리턴하니까 promise가 지원하는 메소드를 사용이 가능하다. 그래서.catch()를 이용하여 예외처리를 할 수 있다.
+
+	async function f3() {
+		try {
+		const a = await add10(10)
+		const b = await add10(a)
+		console.log(a, b)
+		} catch(err) {
+		console.log(err)
+		}
+	}
+	f3();
+
+// 이렇게 기존방식인 try-catch도 사용이 가능하다.
