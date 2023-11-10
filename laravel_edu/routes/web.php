@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 /*
@@ -108,3 +109,19 @@ Route::get('/name/home/php504/root', function() {
 Route::get('/name/home/php504/user', function() {
     return '이름 있는 라우트';
 })->name('name.user');
+
+
+// ----------
+// 컨트롤러
+// ----------
+// 커멘드로 컨트롤러 생성 : php artisan make:controller 컨트롤러밍
+// 문법입니다 이렇게 적으십셔.
+// Ex : http://127.0.0.1:8000/test
+use App\Http\Controllers\TestController;
+Route::get('/test', [TestController::class, 'index'])->name('test.index');
+// Router에서시작해서 test에서 test controller에서 index메소드를 실행 $name라는 변수에 값을 담아서 view로 화면을 출력
+// 라우터에서 시작을 해 테스트 컨트롤러에 안에 있는 인덱스 메소드를 실행해 테스트라는 뷰를 보여줘야댐 네임이라는 변수 안에 미스터 존이라는 값을 포함해서 보여줘라 ㅇㅇ
+// class안에 있는 함수 = method
+//  php artisan make:controller 컨트롤러명 --resource라는 메소드 사용시 url과 name(actionmethod)를 세팅해줌
+use App\Http\Controllers\TaskController;
+Route::resource('/task', TaskController::class);
