@@ -125,10 +125,10 @@ Route::get('/test', [TestController::class, 'index'])->name('test.index');
 //  php artisan make:controller 컨트롤러명 --resource라는 메소드 사용시 url과 name(actionmethod)를 세팅해줌
 use App\Http\Controllers\TaskController;
 Route::resource('/task', TaskController::class);
-//GET|HEAD        task .................... task.index › TaskController@index  
-//POST            task .................... task.store › TaskController@store  
-//GET|HEAD        task/create ............. task.create › TaskController@create  
-//GET|HEAD        task/{task} ............. task.show › TaskController@show  
-//PUT|PATCH       task/{task} ............. task.update › TaskController@update  
-//DELETE          task/{task} ............. task.destroy › TaskController@destroy  
-//GET|HEAD        task/{task}/edit ........ task.edit › TaskController@edit
+//GET|HEAD        task .................... task.index › TaskController@index  리스트페이지
+//POST            task .................... task.store › TaskController@store  저장버튼
+//GET|HEAD        task/create ............. task.create › TaskController@create  인서트페이지
+//GET|HEAD        task/{task} ............. task.show › TaskController@show  상세페이지
+//PUT|PATCH       task/{task} ............. task.update › TaskController@update  수정버튼
+//DELETE          task/{task} ............. task.destroy › TaskController@destroy  삭제버튼
+//GET|HEAD        task/{task}/edit ........ task.edit › TaskController@edit삭제페이지
