@@ -131,4 +131,25 @@ Route::resource('/task', TaskController::class);
 //GET|HEAD        task/{task} ............. task.show › TaskController@show  상세페이지
 //PUT|PATCH       task/{task} ............. task.update › TaskController@update  수정버튼
 //DELETE          task/{task} ............. task.destroy › TaskController@destroy  삭제버튼
-//GET|HEAD        task/{task}/edit ........ task.edit › TaskController@edit삭제페이지
+//GET|HEAD        task/{task}/edit ........ task.edit › TaskController@edit 삭제페이지
+// {task} 세그먼트 파라미터 segment(분할하다)
+
+// 블레이드 템플릿용
+Route::get('/child1', function() {
+    $arr = [
+         'name' => '김뽀삐'
+         ,'age' => 130
+         ,'gender' => '여자'
+    ];
+    $arr2 = [];
+    return view('child1')
+         ->with('gender', '3')
+         ->with('data', $arr)
+         ->with('data2', $arr2);
+});
+
+
+
+Route::get('/child2', function() {
+    return view('child2');
+});
