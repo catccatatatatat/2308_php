@@ -22,11 +22,10 @@ Route::get('/', function () {
 
 // 유저관련
 Route::get('/user/login', [UserController::class, 'loginget'])->name('user.login.get'); // 로그인 화면 이동
-Route::post('/user/login', [UserController::class, 'loginpost'])->name('user.login.post'); //로그인 처리
+Route::middleware('my.user.validation')->post('/user/login', [UserController::class, 'loginpost'])->name('user.login.post'); //로그인 처리
 Route::get('/user/registration', [UserController::class, 'registrationget'])->name('user.registration.get'); //회원가입 확인
-Route::post('/user/registration', [UserController::class, 'registrationpost'])->name('user.registration.post'); //로그인 처리
+Route::middleware('my.user.validation')->post('/user/registration', [UserController::class, 'registrationpost'])->name('user.registration.post'); //회원가입 처리
 Route::get('/user/logout', [UserController::class, 'logoutget'])->name('user.logout.get');// 로그아웃 처리
-
 
 //GET|HEAD        user .................... task.index › UserController@index  로그인 화면 이동
 //GET|HEAD        user/{user} ............. task.destroy › UserController@edit 로그인 처리
@@ -40,4 +39,11 @@ Route::get('/user/logout', [UserController::class, 'logoutget'])->name('user.log
 //DELETE          user/{user} ............. task.destroy › UserController@destroy  회원 탈퇴 처리
 
 // 보드관련
-Route::resource('/board', BoardController::class);
+Route::middleware('auth')->resource('/board', BoardController::class);
+// GET|HEAD        board .......................................................... board.index › BoardController@index 리스트페이지 이동
+// POST            board .......................................................... board.store › BoardController@store 작성 처리
+// GET|HEAD        board/create ................................................. board.create › BoardController@create 작성 페이지로 이동
+// GET|HEAD        board/{board} .................................................... board.show › BoardController@show 상세 페이지로 이동
+// PUT|PATCH       board/{board} ................................................ board.update › BoardController@update 수정 처리
+// DELETE          board/{board} .............................................. board.destroy › BoardController@destroy 삭제 처리
+// GET|HEAD        board/{board}/edit ............................................... board.edit › BoardController@edit 수정 페이지로 이동

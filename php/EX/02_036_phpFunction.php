@@ -25,7 +25,7 @@ echo "백분율: " . $percentage_result . "%\n";
 // 가변 파라미터
 function my_arag_param(...$items) {
     print_r($items);
-    func_num_args()
+    func_num_args();
 
 }
 

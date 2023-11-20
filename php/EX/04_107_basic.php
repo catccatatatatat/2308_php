@@ -2,7 +2,7 @@
 
 try {
 	// 예외 상황이 발생 할 만한 소스코드 ( 우리가 처리 하고싶은 소스코드)
-	echo "Try 실행\n;"
+	// echo "Try 실행"\n;
 	throw new Exception("강제 예외 발생");
 	echo "Try 종료\n";
 } catch(Exception $e) {

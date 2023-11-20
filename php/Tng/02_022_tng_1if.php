@@ -38,7 +38,7 @@ else if($num >60) {
 else {
     echo "잘못된 값을 입력했습니다.";
 }
-$str = print ($answer,  $num, $grade);
-echo $str;
+// $str = print ($answer,  $num, $grade);
+// echo $str;
 
 ?>
