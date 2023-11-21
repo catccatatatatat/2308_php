@@ -52,3 +52,11 @@
 .modalAni-leave-to {
   opacity: 0;
 }
+
+.discount {
+  background-color: rgb(225, 236, 203);
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+}

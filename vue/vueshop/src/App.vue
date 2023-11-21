@@ -1,16 +1,27 @@
 <template>
-  <div>
     <img alt="Vue logo" src="./assets/logo.png">
 
     <!-- 헤더 -->
-    <div class="nav">
-      <a v-for="item in navList" :key="item">{{ item }}</a>
-    </div>
+      <Header :data="navList"></Header>
+      
 
-    <!-- 모달 -->
-    <Transition name="modalAni">
+  <!-- 컴포넌트로 이관 -->
+  <Discount></Discount>
+    <!-- 할인 배너 -->
+    <!-- <div class="discount">
+    <p>지금 당장 구매 하시면, 30%할인</p>
+  </div> -->
+
+
     
-    <div class="bg_black" v-if="modalFlg" @click="closeModal" name="modalAni">
+    <!-- 모달 -->
+  <Transition name="modalAni">
+    <Modal
+      v-if="modalFlg" 
+      :data="selectedProduct"
+      @closeModal="closeModal" 
+    ></Modal>
+    <!-- <div class="bg_black" v-if="modalFlg" @click="closeModal" name="modalAni">
       <div class="bg_white" @click.stop>
         <img :src="selectedProduct.img" alt="이미지">
         <h4>{{ selectedProduct.name }}</h4>
@@ -19,25 +30,30 @@
         <p>신고수 : {{ selectedProduct.reportCnt }}</p>
         <button @click="closeModal">닫기</button>
       </div>
-    </div>
+    </div> -->
   </Transition>
 
     <!-- 상품 리스트 -->
     <div>
-      <div v-for="(item, i) in products" :key="i">
-        <h4 @click="openModal(item)">{{ item.name }}</h4>
-        <p>{{ item.price }}원</p>
-        <button @click="plusOne(i)">허위 매물 신고</button>
-        <span>신고수 : {{ item.reportCnt }}</span>
-      </div>
+      <ProductList
+        v-for="(item, i) in products" :key="i"
+        :data = "item"
+        :productKey = "i"
+        @openModal = "openModal"
+        @plusOne = "plusOne"
+        >
+      </ProductList>
     </div>
-  </div>
+  
 </template>
 
 <script>
 
 import data from './assets/js/data.js';
-
+import Discount from './components/Discount.vue';
+import Header from './components/Header.vue';
+import Modal from './components/Modal.vue';
+import ProductList from './components/ProductList.vue';
 export default {
   name: 'App',
   data() {
@@ -50,7 +66,7 @@ export default {
       // ],
       products: data,
       modalFlg: false,
-      selectedProduct: null,
+      selectedProduct: {},
     }
   },
   methods: {
@@ -64,8 +80,14 @@ export default {
     closeModal() {
       this.modalFlg = false;
     }
-  }
+  },
+  // 컴포넌트를 등록하는 영역
+  components: {
+    Discount, Header, Modal, ProductList
+  },
 };
+
+
 </script>
 
 <style>
