@@ -162,7 +162,7 @@
                 크림 주식회사 · 대표
               </dt>
               <dd class="business-derc">
-                김창욱
+                김민정
               </dd>
             </dl>
             <dl class="info-item">
