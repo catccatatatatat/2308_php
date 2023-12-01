@@ -88,13 +88,3 @@
 
 <br />
 
-### 🌳 설계도
-
-
-<img width="800" alt="User flow" src="https://velog.velcdn.com/images/yejine2/post/51e77242-9821-4dd6-b77f-de42657b03ee/image.jpg">
-
-
-- [User Flow](https://app.diagrams.net/#G1CvW9kHXPxmw40lganlLvndA0Nr9bjmlQ)
-
-
-<br />
